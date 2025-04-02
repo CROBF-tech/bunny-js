@@ -66,7 +66,7 @@ bunny.fetch("https://api.example.com/data")
               </div>
             </div>
             <div className="md:w-1/2">
-              <div className="bg-bunny-black/90 rounded-lg p-1 shadow-lg transform rotate-1 hover:rotate-0 transition-transform">
+              <div className="bg-bunny-black/90 rounded-lg p-1 shadow-lg transform rotate-1 hover:rotate-0 transition-transform max-w-[80vw]">
                 <CodeBlock
                   code={simpleExample}
                   title="ejemplo.js"
@@ -81,7 +81,7 @@ bunny.fetch("https://api.example.com/data")
       <section className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-bunny-black text-center mb-16">
-            <span className="border-b-4 border-bunny-yellow pb-2">
+            <span className="border-b-4 border-bunny-yellow leading-10">
               ¿Por qué elegir bunny?
             </span>
           </h2>
@@ -128,25 +128,25 @@ bunny.fetch("https://api.example.com/data")
               </p>
               <ul className="space-y-4 text-bunny-black/80">
                 <li className="flex items-start">
-                  <span className="text-bunny-yellow bg-bunny-black rounded-full p-1 mr-3 inline-flex">✓</span>
+                  <span className="text-bunny-yellow bg-bunny-black rounded-[100%] py-1 px-2 mr-3 inline-flex">✓</span>
                   <span>Creación de elementos simplificada</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-bunny-yellow bg-bunny-black rounded-full p-1 mr-3 inline-flex">✓</span>
+                  <span className="text-bunny-yellow bg-bunny-black rounded-[100%] py-1 px-2 mr-3 inline-flex">✓</span>
                   <span>Manipulación del DOM directa</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-bunny-yellow bg-bunny-black rounded-full p-1 mr-3 inline-flex">✓</span>
+                  <span className="text-bunny-yellow bg-bunny-black rounded-[100%] py-1 px-2 mr-3 inline-flex">✓</span>
                   <span>Manejo de eventos con eventos nativos</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-bunny-yellow bg-bunny-black rounded-full p-1 mr-3 inline-flex">✓</span>
+                  <span className="text-bunny-yellow bg-bunny-black rounded-[100%] py-1 px-2 mr-3 inline-flex">✓</span>
                   <span>Solicitudes HTTP simplificadas</span>
                 </li>
               </ul>
             </div>
             <div className="md:w-1/2">
-              <div className="bg-bunny-black/90 rounded-lg p-1 shadow-lg transform -rotate-1 hover:rotate-0 transition-transform">
+              <div className="bg-bunny-black/90 rounded-lg p-1 shadow-lg transform -rotate-1 hover:rotate-0 transition-transform max-w-[80vw]">
                 <CodeBlock
                   code={ajaxExample}
                   title="ajax-ejemplo.js"
