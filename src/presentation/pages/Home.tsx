@@ -6,26 +6,27 @@ import { FeatureCard } from "../components/ui/FeatureCard";
 
 const Home = () => {
   // Example code snippets
-  const simpleExample = `// Seleccionar elementos y manipular el DOM
-$('.my-element').text('¡Hola desde bunny!');
+  const simpleExample = `// Crear y manipular elementos
+const button = bunny.button("Click me");
+button.when("click", (target) => {
+  target.textContent = "¡Gracias por usar bunny!";
+});
 
-// Encadenar métodos
-$('button')
-  .css('background-color', '#FFC700')
-  .on('click', () => alert('¡Gracias por usar bunny!'));`;
+// Aplicar estilos
+button.style("backgroundColor", "#FFC700");
+button.insertIn(document.body);`;
 
   const ajaxExample = `// Realizar peticiones AJAX
-$.ajax({
-  url: 'https://api.example.com/data',
-  method: 'GET',
-  success: (data) => {
-    $('.result').html(
-      data.items.map(item => 
-        \`<li>\${item.name}</li>\`
-      ).join('')
-    );
-  }
-});`;
+bunny.fetch("https://api.example.com/data")
+  .then(data => {
+    const list = bunny.ul();
+    
+    data.items.forEach(item => {
+      list.li(item.name);
+    });
+    
+    list.insertIn(document.querySelector(".result"));
+  });`;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -40,7 +41,7 @@ $.ajax({
                 <span className="text-white">Simple. Rápido.</span>
               </h1>
               <p className="text-bunny-black/80 text-lg md:text-xl mb-8 max-w-lg">
-                Una pequeña librería JavaScript minimalista inspirada en jQuery, pero más ligera y moderna para tus proyectos web.
+                Una pequeña librería JavaScript minimalista para crear y manipular elementos del DOM de forma sencilla y directa.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -91,8 +92,8 @@ $.ajax({
               description="Solo lo esencial. Sin dependencias adicionales ni código innecesario que ralentice tu aplicación."
             />
             <FeatureCard
-              title="Familiar"
-              description="Si conoces jQuery, ya sabes cómo usar bunny. Sintaxis familiar con mejoras modernas."
+              title="Directo"
+              description="Sintaxis clara y concisa. Evita encadenamientos innecesarios y se enfoca en un código limpio."
             />
             <FeatureCard
               title="Ligero"
@@ -123,24 +124,24 @@ $.ajax({
                 Código simple y elegante
               </h2>
               <p className="text-bunny-black/80 text-lg mb-8">
-                bunny está diseñado para ser intuitivo y fácil de usar. Selecciona elementos, manipula el DOM y maneja eventos con una sintaxis clara y concisa.
+                bunny está diseñado para ser intuitivo y fácil de usar. Crea elementos, manipula el DOM y maneja eventos con una sintaxis clara y directa.
               </p>
               <ul className="space-y-4 text-bunny-black/80">
                 <li className="flex items-start">
                   <span className="text-bunny-yellow bg-bunny-black rounded-full p-1 mr-3 inline-flex">✓</span>
-                  <span>Selección de elementos con sintaxis de CSS</span>
+                  <span>Creación de elementos simplificada</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-bunny-yellow bg-bunny-black rounded-full p-1 mr-3 inline-flex">✓</span>
-                  <span>Manipulación del DOM simplificada</span>
+                  <span>Manipulación del DOM directa</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-bunny-yellow bg-bunny-black rounded-full p-1 mr-3 inline-flex">✓</span>
-                  <span>Manejo de eventos con encadenamiento de métodos</span>
+                  <span>Manejo de eventos con eventos nativos</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-bunny-yellow bg-bunny-black rounded-full p-1 mr-3 inline-flex">✓</span>
-                  <span>Solicitudes AJAX simplificadas</span>
+                  <span>Solicitudes HTTP simplificadas</span>
                 </li>
               </ul>
             </div>

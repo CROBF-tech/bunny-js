@@ -14,10 +14,10 @@ const Documentation = () => {
 
   const sections: Section[] = [
     { id: "instalacion", title: "Instalación" },
-    { id: "selectores", title: "Selectores" },
+    { id: "elementos", title: "Creación de elementos" },
     { id: "manipulacion", title: "Manipulación DOM" },
     { id: "eventos", title: "Eventos" },
-    { id: "ajax", title: "AJAX" },
+    { id: "http", title: "HTTP" },
     { id: "utilidades", title: "Utilidades" },
   ];
 
@@ -37,148 +37,172 @@ const Documentation = () => {
 npm install bunny-js
 
 // Y luego importándolo
-import $ from 'bunny-js';`;
+import bunny from 'bunny-js';`;
 
-  const selectorCode = `// Seleccionar por ID
-$("#miElemento");
+  const elementCode = `// Crear un botón
+const button = bunny.button("Click me");
 
-// Seleccionar por clase
-$(".mi-clase");
+// Crear un párrafo
+const paragraph = bunny.p("Este es un párrafo");
 
-// Seleccionar por atributo
-$("[data-role='button']");
+// Crear una lista
+const list = bunny.ul();
+list.li("Elemento 1");
+list.li("Elemento 2");
 
-// Combinando selectores
-$("ul.menu li");
+// Crear una estructura anidada
+const div = bunny.div();
+const heading = div.h1("Título principal");
+const subheading = div.h2("Subtítulo");
 
-// Filtrando elementos
-$("p").filter(".destacado");
+// Crear un enlace con atributos
+const link = bunny.a("Ir a bunny");
+link.attr("href", "https://bunnyjs.org");
+link.attr("target", "_blank");
 
-// Encontrando elementos dentro de otro
-$(".contenedor").find("a");`;
+// Insertar elementos en el DOM
+div.insertIn(document.body);`;
 
-  const manipulationCode = `// Cambiar texto
-$(".titulo").text("Nuevo título");
+  const manipulationCode = `// Crear un elemento y modificarlo
+const title = bunny.h2("Título original");
+title.textContent = "Nuevo título";
 
-// Cambiar HTML
-$(".contenido").html("<p>Nuevo párrafo</p>");
-
-// Cambiar atributos
-$("#miEnlace").attr("href", "https://ejemplo.com");
+// Modificar atributos
+const image = bunny.img();
+image.attr("src", "imagen.jpg");
+image.attr("alt", "Descripción de la imagen");
 
 // Añadir/quitar clases
-$(".boton")
-  .addClass("destacado")
-  .removeClass("inactivo");
+const panel = bunny.div();
+panel.addClass("destacado");
+panel.removeClass("inactivo");
 
 // Modificar estilos
-$(".panel").css({
-  backgroundColor: "#f5f5f5",
-  padding: "20px",
-  borderRadius: "8px"
-});
+const card = bunny.div();
+card.style("backgroundColor", "#f5f5f5");
+card.style("padding", "20px");
+card.style("borderRadius", "8px");
 
 // Clonar elementos
-const clon = $(".original").clone();
+const original = bunny.p("Original");
+const clon = original.clone();
 
 // Insertar elementos
-$(".contenedor").append("<p>Nuevo contenido</p>");
-$("<button>Haz clic</button>").insertAfter(".referencia");`;
+const container = bunny.div();
+container.append(bunny.p("Nuevo contenido"));
+
+// O más directo
+container.p("Otro párrafo");
+const button = container.button("Haz clic");
+
+// Insertar al final del body
+container.insertIn(document.body);`;
 
   const eventsCode = `// Click básico
-$(".boton").on("click", function() {
+const button = bunny.button("Haz clic");
+button.when("click", (target) => {
   alert("¡Botón pulsado!");
 });
 
-// Con arrow function
-$(".boton").on("click", () => {
-  $(".mensaje").text("¡Hiciste clic!");
+// Usando event object
+const input = bunny.input();
+input.when("input", (target, event) => {
+  console.log("Valor actual:", target.value);
+  event.preventDefault();
 });
 
-// Múltiples eventos
-$(".campo")
-  .on("focus", () => { /* código */ })
-  .on("blur", () => { /* código */ });
+// Múltiples eventos en un elemento
+const campo = bunny.input();
+campo.when("focus", (target) => {
+  target.style.borderColor = "#FFC700";
+});
+campo.when("blur", (target) => {
+  target.style.borderColor = "#ccc";
+});
 
-// Delegación de eventos
-$(".lista").on("click", "li", function() {
-  // 'this' se refiere al elemento li que recibió el clic
-  $(this).toggleClass("seleccionado");
+// Delegación de eventos en una lista
+const list = bunny.ul();
+list.li("Elemento 1");
+list.li("Elemento 2");
+
+list.when("click", (target, event) => {
+  if (event.target.tagName === "LI") {
+    event.target.classList.toggle("seleccionado");
+  }
 });
 
 // Remover eventos
-$(".boton").off("click");`;
+button.removeEvent("click");`;
 
-  const ajaxCode = `// GET request simple
-$.ajax({
-  url: "https://api.ejemplo.com/datos",
-  success: (data) => {
-    console.log(data);
-    $(".resultados").html(
-      data.map(item => \`<li>\${item.nombre}</li>\`).join("")
-    );
-  },
-  error: (error) => {
+  const httpCode = `// GET request simple
+bunny.fetch("https://api.ejemplo.com/datos")
+  .then(data => {
+    const list = bunny.ul();
+    
+    data.forEach(item => {
+      list.li(item.nombre);
+    });
+    
+    list.insertIn(document.querySelector(".resultados"));
+  })
+  .catch(error => {
     console.error("Error:", error);
-  }
-});
+  });
 
 // POST request con datos
-$.ajax({
-  url: "https://api.ejemplo.com/usuarios",
+bunny.fetch("https://api.ejemplo.com/usuarios", {
   method: "POST",
-  data: {
+  body: {
     nombre: "Usuario",
     email: "usuario@ejemplo.com"
+  }
+})
+.then(response => {
+  const mensaje = bunny.p("Usuario creado: " + response.id);
+  mensaje.insertIn(document.querySelector(".mensaje"));
+});
+
+// Petición con opciones personalizadas
+bunny.fetch("https://api.ejemplo.com/datos", {
+  method: "GET",
+  headers: {
+    "Authorization": "Bearer token123"
   },
-  success: (response) => {
-    $(".mensaje").text("Usuario creado: " + response.id);
-  }
-});
+  timeout: 5000
+})
+.then(data => {
+  console.log(data);
+});`;
 
-// Atajos para GET y POST
-$.get("https://api.ejemplo.com/datos", data => {
-  $(".resultados").text(JSON.stringify(data));
-});
-
-$.post("https://api.ejemplo.com/enviar", 
-  { mensaje: "Hola mundo" }, 
-  response => {
-    console.log(response);
-  }
-);`;
-
-  const utilitiesCode = `// Iteración sobre elementos
-$("li").each(function(index) {
-  $(this).text(\`Elemento \${index + 1}\`);
+  const utilitiesCode = `// Iterar sobre elementos
+const items = document.querySelectorAll("li");
+bunny.each(items, (item, index) => {
+  item.textContent = \`Elemento \${index + 1}\`;
 });
 
 // Comprobar si un elemento tiene una clase
-if ($(".elemento").hasClass("activo")) {
+const elemento = document.querySelector(".btn");
+if (bunny.hasClass(elemento, "activo")) {
   // hacer algo
 }
 
-// Comprobar si un elemento está visible
-if ($(".elemento").isVisible()) {
-  // hacer algo
-}
+// Ejecución periódica
+bunny.wait(1000, () => {
+  console.log("Ha pasado un segundo");
+});
 
-// Animar elementos
-$(".caja").animate({
-  opacity: 0.5,
-  left: "+=50",
-  height: "toggle"
-}, 500);
+// Ejecución retrasada
+bunny.delay(2000, () => {
+  console.log("Han pasado dos segundos");
+});
 
 // Esperar a que el DOM esté listo
-$(document).ready(() => {
+bunny.ready(() => {
   // iniciar la aplicación
 });
 
-// Forma corta
-$(() => {
-  // iniciar la aplicación
-});`;
+// Depuración
+bunny.log("Mensaje de depuración", { data: "valor" });`;
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -229,21 +253,21 @@ $(() => {
             </p>
             <CodeBlock code={installationCode} />
             <p className="mt-4 text-gray-700">
-              Después de instalar, puedes usar el símbolo <code className="bg-gray-100 px-1 py-0.5 rounded text-bunny-black">$</code> para acceder a todas las funcionalidades de bunny.
+              Después de instalar, puedes usar el objeto <code className="bg-gray-100 px-1 py-0.5 rounded text-bunny-black">bunny</code> para acceder a todas las funcionalidades de la librería.
             </p>
           </section>
 
-          {/* Selectors Section */}
-          <section id="selectores" className="mb-16 scroll-mt-20">
+          {/* Elements Section */}
+          <section id="elementos" className="mb-16 scroll-mt-20">
             <h2 className="text-2xl font-bold text-bunny-black mb-4 pb-2 border-b border-gray-200">
-              Selectores
+              Creación de elementos
             </h2>
             <p className="mb-4 text-gray-700">
-              bunny utiliza selectores CSS para encontrar elementos HTML en tu página. Puedes utilizar cualquier selector válido de CSS.
+              bunny proporciona métodos intuitivos para crear elementos HTML de forma programática.
             </p>
-            <CodeBlock code={selectorCode} />
+            <CodeBlock code={elementCode} />
             <p className="mt-4 text-gray-700">
-              Los métodos de selección devuelven una colección de elementos que puedes manipular con los métodos de bunny.
+              Los métodos de creación de elementos devuelven objetos que permiten seguir modificando o anidando elementos de manera directa.
             </p>
           </section>
 
@@ -257,7 +281,7 @@ $(() => {
             </p>
             <CodeBlock code={manipulationCode} />
             <p className="mt-4 text-gray-700">
-              Todos los métodos de manipulación pueden encadenarse para realizar múltiples operaciones en los mismos elementos.
+              Todos los métodos de manipulación son directos y permiten modificar elementos de manera concisa.
             </p>
           </section>
 
@@ -267,25 +291,25 @@ $(() => {
               Eventos
             </h2>
             <p className="mb-4 text-gray-700">
-              Maneja interacciones del usuario mediante eventos como clicks, hover, teclado y más.
+              Maneja interacciones del usuario mediante el método <code className="bg-gray-100 px-1 py-0.5 rounded text-bunny-black">when</code> para asociar eventos a elementos.
             </p>
             <CodeBlock code={eventsCode} />
             <p className="mt-4 text-gray-700">
-              bunny simplifica el manejo de eventos y proporciona una forma consistente de trabajar con ellos en diferentes navegadores.
+              bunny simplifica el manejo de eventos al proporcionar acceso directo al elemento objetivo y al objeto de evento nativo.
             </p>
           </section>
 
-          {/* AJAX Section */}
-          <section id="ajax" className="mb-16 scroll-mt-20">
+          {/* HTTP Section */}
+          <section id="http" className="mb-16 scroll-mt-20">
             <h2 className="text-2xl font-bold text-bunny-black mb-4 pb-2 border-b border-gray-200">
-              AJAX
+              HTTP
             </h2>
             <p className="mb-4 text-gray-700">
               Realiza peticiones HTTP asíncronas para cargar datos sin recargar la página.
             </p>
-            <CodeBlock code={ajaxCode} />
+            <CodeBlock code={httpCode} />
             <p className="mt-4 text-gray-700">
-              Las funciones AJAX de bunny facilitan la comunicación con APIs y servicios web de manera sencilla.
+              Las funciones HTTP de bunny facilitan la comunicación con APIs y servicios web de manera directa.
             </p>
           </section>
 
