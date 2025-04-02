@@ -68,9 +68,11 @@ export default class BunnyElement<T extends HTMLElement> {
    */
   when<K extends keyof HTMLElementEventMap>(
     eventTarget: K,
-    handler: EventHandler<HTMLElementEventMap[K]>
+    handler: (target: this, event: HTMLElementEventMap[K]) => void
   ): this {
-    this.element.addEventListener(eventTarget, handler as EventListener);
+    this.element.addEventListener(eventTarget, (event) => {
+      handler(this, event); // Pasa `this` como primer parámetro y el evento como segundo
+    });
     return this;
   }
 
