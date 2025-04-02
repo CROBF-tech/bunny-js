@@ -1,0 +1,30 @@
+{
+    "name": "bunny-js",
+    "description": "Una librería minimalista para manipular el DOM",
+    "version": "0.1.0",
+    "author": {
+        "name": "CROBF",
+        "email": "crobf.arg@gmail.com",
+        "url": "https://github.com/CROBF-tech"
+    },
+    "main": "dist/bunny.es.js",
+    "type": "module",
+    "module": "dist/bunny.es.js",
+    "private": "false",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CROBF-tech/bunny-js.git"
+    },
+    "files": [
+        "src",
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build && google-closure-compiler --js dist/bunny.es.js --js_output_file dist/bunny.min.js --compilation_level SIMPLE"
+    },
+    "devDependencies": {
+        "@rollup/plugin-terser": "^0.4.4",
+        "google-closure-compiler": "^20240317.0.0",
+        "vite": "^5.4.1"
+    }
+}
