@@ -10,10 +10,10 @@
     "main": "dist/bunny.es.js",
     "type": "module",
     "module": "dist/bunny.es.js",
-    "private": "false",
+    "private": false,
     "repository": {
         "type": "git",
-        "url": "https://github.com/CROBF-tech/bunny-js.git"
+        "url": "git+https://github.com/CROBF-tech/bunny-js.git"
     },
     "files": [
         "src",

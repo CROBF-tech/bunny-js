@@ -91,16 +91,4 @@ const bunny = {
   },
 };
 
-// Exportaciones para uso en módulos
-export {
-  BunnyElement,
-  BunnyDiv,
-  BunnyParagraph,
-  BunnyInput,
-  BunnyButton,
-  BunnyTable,
-  BunnyRow,
-  BunnyTableHead,
-  BunnyTableField,
-  bunny,
-};
+export default bunny;

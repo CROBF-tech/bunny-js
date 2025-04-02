@@ -20,6 +20,7 @@ export default defineConfig({
           format: "umd",
           entryFileNames: "bunny.umd.js",
           name: "bunny",
+          exports: "default",
         },
       ],
     },

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Bunny JS</title>
+</head>
+<body>
+
+    <h1>Probando Bunny JS</h1>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/@crobf/bunny-js@latest/dist/bunny.umd.js"></script>
+    <script>
+        // Verifica que Bunny está cargado
+        console.log("BunnyJS:", window.bunny.bunny);
+
+        // Crea un nuevo botón con BunnyJS
+        const btn = bunny.bunny.button();
+        btn.text("Haz click!");
+
+        // Evento click para cambiar el texto
+        btn.when("click", (target, event) => {
+            btn.text("¡Botón presionado! V1");
+            console.log("Argumentos:", [target, event]);
+        });
+
+        // Agrega el botón al div container
+        btn.insertIn("#app");
+    </script>
+
+</body>
+</html>
