@@ -1,5 +1,5 @@
 {
-    "name": "bunny-js",
+    "name": "@crobf/bunny-js",
     "description": "Una librería minimalista para manipular el DOM",
     "version": "0.1.0",
     "author": {
@@ -20,7 +20,9 @@
         "dist"
     ],
     "scripts": {
-        "build": "vite build && google-closure-compiler --js dist/bunny.es.js --js_output_file dist/bunny.min.js --compilation_level SIMPLE"
+        "prebuild": "vite build",
+        "build": "tsc --emitDeclarationOnly",
+        "postbuild": "google-closure-compiler --js dist/bunny.es.js --js_output_file dist/bunny.min.js --compilation_level SIMPLE"
     },
     "devDependencies": {
         "@rollup/plugin-terser": "^0.4.4",
