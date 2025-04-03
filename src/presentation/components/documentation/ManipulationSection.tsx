@@ -1,9 +1,8 @@
-
 import { CodeBlock } from "../ui/CodeBlock";
 
 const manipulationCode = `// Crear un elemento y modificarlo
-const title = bunny.h2("Título original");
-title.textContent = "Nuevo título";
+const title = bunny.title("Título original: Un <h2></h2>", 2);
+title.text("Nuevo título");
 
 // Modificar atributos
 const image = bunny.img();
@@ -17,24 +16,46 @@ panel.removeClass("inactivo");
 
 // Modificar estilos
 const card = bunny.div();
-card.style("backgroundColor", "#f5f5f5");
+card.style("background-color", "#f5f5f5");
 card.style("padding", "20px");
-card.style("borderRadius", "8px");
+card.style("border-radius", "8px");
 
 // Clonar elementos
 const original = bunny.p("Original");
 const clon = original.clone();
 
-// Insertar elementos
-const container = bunny.div();
-container.append(bunny.p("Nuevo contenido"));
+// Insertar elementos de forma encadenada
+const container = bunny.div()
+  .append(original)
+  .append(clon);
 
 // O más directo
-container.p("Otro párrafo");
 const button = container.button("Haz clic");
 
 // Insertar al final del body
 container.insertIn(document.body);`;
+
+const utilsMethods = `// Puedes obtener un elemento ya creado
+const miElemento = bunny.select('#miId');
+if (miElemento) {
+  // Y el resultado es un BunnyElement
+  miElemento.text('Nuevo texto');
+}
+
+// Seleccionar múltiples elementos por clase
+const elementos = bunny.selectAll('.miClase');
+elementos.forEach(el => {
+  el.text('Nuevo texto').addClass('modificado');
+});
+
+// Esperar a que el DOM esté listo
+bunny.ready(() => {
+  const app = bunny.div()
+    .addClass('app-container')
+    .p('La aplicación está lista')
+    .insertIn(document.body);
+});
+`;
 
 export const ManipulationSection = () => {
   return (
@@ -43,12 +64,47 @@ export const ManipulationSection = () => {
         Manipulación del DOM
       </h2>
       <p className="mb-4 text-gray-700">
-        bunny proporciona métodos sencillos para modificar el contenido, atributos y estilos de los elementos HTML.
+        Bunny ofrece una API fluida y poderosa para manipular el DOM de forma sencilla y eficiente. Puedes crear, modificar y gestionar elementos HTML con una sintaxis clara y encadenable.
       </p>
       <CodeBlock code={manipulationCode} />
-      <p className="mt-4 text-gray-700">
-        Todos los métodos de manipulación son directos y permiten modificar elementos de manera concisa.
+      <p className="mb-4 text-gray-700">
+        La biblioteca proporciona métodos de selección potentes para trabajar con elementos existentes y gestionar el ciclo de vida del DOM.
       </p>
+      <CodeBlock code={utilsMethods} />
+      <p className="mb-4 text-gray-700">
+        Incluyendo helpers para crear cualquier elemento HTML de forma rápida y sencilla. Aquí tienes una lista completa de los métodos disponibles:
+      </p>
+
+       <CodeBlock code={`
+// Elementos básicos
+bunny.div() // Crea un <div>
+bunny.p("Texto") // Crea un <p> con texto
+bunny.input("text") // Crea un <input type="text">
+bunny.button("Click me") // Crea un <button>
+
+// Elementos de formulario
+bunny.input("text")           // Crea un <input type="text">
+bunny.button("Click me")      // Crea un <button>
+
+// Elementos de tabla
+bunny.table() // Crea una <table>
+bunny.row() // Crea un <tr>
+bunny.th("Encabezado") // Crea un <th>
+bunny.td("Celda") // Crea un <td>
+
+// Elementos de lista
+bunny.ul() // Crea una <ul>
+bunny.ol() // Crea una <ol>
+bunny.li("Item") // Crea un <li>
+
+// Títulos y texto
+bunny.title("Mi título", 1) // Crea un <h1>
+bunny.title("Subtítulo", 2) // Crea un <h2>
+bunny.title("Sección", 3) // Crea un <h3>
+
+// Elemento genérico
+bunny.element("custom") // Crea cualquier elemento HTML personalizado
+`} />
     </section>
   );
 };

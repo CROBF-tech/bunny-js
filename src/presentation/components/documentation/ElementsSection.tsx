@@ -1,29 +1,58 @@
 
 import { CodeBlock } from "../ui/CodeBlock";
 
-const elementCode = `// Crear un botón
-const button = bunny.button("Click me");
+const addElementExample = `// Importar BunnyJS
+import bunny from 'bunnyjs';
 
-// Crear un párrafo
-const paragraph = bunny.p("Este es un párrafo");
+// Crear un div
+const miDiv = bunny.div();
 
-// Crear una lista
-const list = bunny.ul();
-list.li("Elemento 1");
-list.li("Elemento 2");
+// Añadir texto al div
+miDiv.text('Hola, soy un div');
 
-// Crear una estructura anidada
-const div = bunny.div();
-const heading = div.h1("Título principal");
-const subheading = div.h2("Subtítulo");
+// Añadir el div al cuerpo del documento
+miDiv.insertIn(document.body);
+`;
 
-// Crear un enlace con atributos
-const link = bunny.a("Ir a bunny");
-link.attr("href", "https://bunnyjs.org");
-link.attr("target", "_blank");
+const addElementWithEvents = `// Crear un botón con texto, ID y clase
+const miBoton = bunny.button('Haz clic');
+miBoton.id('miBoton');
+miBoton.addClass('boton-primario otra-clase');
 
-// Insertar elementos en el DOM
-div.insertIn(document.body);`;
+// Añadir eventos al botón
+miBoton.when('click', (target, event) => {
+  console.log(\`Botón \${target} clickeado\`);
+});
+
+// Insertar en un elemento con ID 'app'
+miBoton.insertIn('#app');
+`;
+
+const complexExample = `const formulario = bunny.form()
+  .addClass('formulario')
+  .id('formularioContacto');
+
+// Añadir título
+formulario.title('Formulario de Contacto', 2);
+
+// Añadir campos
+const campoNombre = formulario.div().addClass('campo');
+campoNombre.p('Nombre:');
+campoNombre.input('text').attr({ placeholder: 'Escribe tu nombre' });
+
+const campoEmail = formulario.div().addClass('campo');
+campoEmail.p('Email:');
+campoEmail.input('email').attr({ placeholder: 'Escribe tu email' });
+
+// Añadir botón
+formulario.button('Enviar')
+  .addClass('boton-enviar')
+  .when('click', (target, event) => {
+    // Lógica de envío
+  });
+
+// Insertar en el DOM
+formulario.insertIn('#app');`;
 
 export const ElementsSection = () => {
   return (
@@ -32,12 +61,14 @@ export const ElementsSection = () => {
         Creación de elementos
       </h2>
       <p className="mb-4 text-gray-700">
-        bunny proporciona métodos intuitivos para crear elementos HTML de forma programática.
+      BunnyJS se centra en la creación y manipulación de elementos del DOM a través de una interfaz fluida. Aquí hay algunos ejemplos básicos para empezar.
       </p>
-      <CodeBlock code={elementCode} />
-      <p className="mt-4 text-gray-700">
-        Los métodos de creación de elementos devuelven objetos que permiten seguir modificando o anidando elementos de manera directa.
-      </p>
+      <h4 className="my-5">Crear y añadir elementos al DOM.</h4>
+      <CodeBlock code={addElementExample} title="index.js" />
+      <h4 className="my-5">Crear elementos con eventos y atributos.</h4>
+      <CodeBlock code={addElementWithEvents} title="index.js"></CodeBlock>
+      <h4 className="my-5">Crear estructuras complejas.</h4>
+      <CodeBlock code={complexExample} title="index.js"></CodeBlock>
     </section>
   );
 };

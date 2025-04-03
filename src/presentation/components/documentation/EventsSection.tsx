@@ -10,32 +10,18 @@ button.when("click", (target) => {
 // Usando event object
 const input = bunny.input();
 input.when("input", (target, event) => {
-  console.log("Valor actual:", target.value);
+  console.log("Input element:", target);
   event.preventDefault();
 });
 
 // Múltiples eventos en un elemento
 const campo = bunny.input();
 campo.when("focus", (target) => {
-  target.style.borderColor = "#FFC700";
+  target.style({ borderColor: "#FFC700" });
 });
 campo.when("blur", (target) => {
-  target.style.borderColor = "#ccc";
-});
-
-// Delegación de eventos en una lista
-const list = bunny.ul();
-list.li("Elemento 1");
-list.li("Elemento 2");
-
-list.when("click", (target, event) => {
-  if (event.target.tagName === "LI") {
-    event.target.classList.toggle("seleccionado");
-  }
-});
-
-// Remover eventos
-button.removeEvent("click");`;
+  target.style({ borderColor: "#ccc"});
+});`;
 
 export const EventsSection = () => {
   return (

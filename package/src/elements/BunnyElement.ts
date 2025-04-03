@@ -1,5 +1,3 @@
-import bunny from "..";
-
 /**
  * Tipo genérico para los manejadores de eventos
  */

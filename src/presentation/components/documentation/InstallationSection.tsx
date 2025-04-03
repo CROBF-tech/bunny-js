@@ -19,7 +19,10 @@ export const InstallationSection = () => {
       <p className="mb-4 text-gray-700">
         Puedes incluir bunny en tu proyecto de varias maneras:
       </p>
-      <CodeBlock code={installationCode} />
+      <h4>Usando CDN:</h4>
+      <CodeBlock code='<script src="https://unpkg.com/@crobf/bunny-js@latest/dist/bunny.umd.js"></script>' />
+      <h4>O instalando via npm:</h4>
+      <CodeBlock code='npm i @crobf/bunny-js' />
       <p className="mt-4 text-gray-700">
         Después de instalar, puedes usar el objeto <code className="bg-gray-100 px-1 py-0.5 rounded text-bunny-black">bunny</code> para acceder a todas las funcionalidades de la librería.
       </p>

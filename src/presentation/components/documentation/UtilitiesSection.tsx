@@ -1,19 +1,7 @@
 
 import { CodeBlock } from "../ui/CodeBlock";
 
-const utilitiesCode = `// Iterar sobre elementos
-const items = document.querySelectorAll("li");
-bunny.each(items, (item, index) => {
-  item.textContent = \`Elemento \${index + 1}\`;
-});
-
-// Comprobar si un elemento tiene una clase
-const elemento = document.querySelector(".btn");
-if (bunny.hasClass(elemento, "activo")) {
-  // hacer algo
-}
-
-// Ejecución periódica
+const utilitiesCode = `// Ejecución periódica
 bunny.wait(1000, () => {
   console.log("Ha pasado un segundo");
 });
@@ -26,10 +14,7 @@ bunny.delay(2000, () => {
 // Esperar a que el DOM esté listo
 bunny.ready(() => {
   // iniciar la aplicación
-});
-
-// Depuración
-bunny.log("Mensaje de depuración", { data: "valor" });`;
+});`;
 
 export const UtilitiesSection = () => {
   return (
