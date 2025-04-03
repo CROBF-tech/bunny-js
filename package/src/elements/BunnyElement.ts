@@ -1,7 +1,9 @@
+import bunny from "..";
+
 /**
  * Tipo genérico para los manejadores de eventos
  */
-type EventHandler<T extends Event> = (event: T) => void;
+export type EventHandler<T extends Event> = (event: T) => void;
 
 /**
  * Clase base para todos los elementos de Bunny
@@ -41,21 +43,23 @@ export default class BunnyElement<T extends HTMLElement> {
   }
 
   /**
-   * Establece el contenido de texto del elemento
+   * Establece el contenido de texto del elemento o retorna el actual
    * @param text Texto a establecer
-   * @returns La instancia actual para encadenamiento
+   * @returns La instancia actual para encadenamiento o el contenido de texto actual
    */
-  text(text: string): this {
+  text(text?: string): this | string {
+    if (!text) return this.element.textContent || "";
     this.element.textContent = text;
     return this;
   }
 
   /**
-   * Establece el HTML interno del elemento
+   * Establece el HTML interno del elemento o retorna el actual
    * @param html Contenido HTML a establecer
-   * @returns La instancia actual para encadenamiento
+   * @returns La instancia actual para encadenamiento o el contenido HTML actual
    */
-  html(html: string): this {
+  html(html?: string): this | string {
+    if (!html) return this.element.innerHTML;
     this.element.innerHTML = html;
     return this;
   }
@@ -83,6 +87,7 @@ export default class BunnyElement<T extends HTMLElement> {
    */
   addClass(classes: string): this {
     classes.split(" ").forEach((cls) => {
+      if (this.element.classList.contains(cls.trim())) return;
       if (cls.trim()) this.element.classList.add(cls.trim());
     });
     return this;
@@ -95,6 +100,7 @@ export default class BunnyElement<T extends HTMLElement> {
    */
   removeClass(classes: string): this {
     classes.split(" ").forEach((cls) => {
+      if (!this.element.classList.contains(cls.trim())) return;
       if (cls.trim()) this.element.classList.remove(cls.trim());
     });
     return this;

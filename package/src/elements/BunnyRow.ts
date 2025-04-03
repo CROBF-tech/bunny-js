@@ -16,7 +16,8 @@ export default class BunnyRow extends BunnyElement<HTMLTableRowElement> {
    * @returns La instancia actual para encadenamiento
    */
   addHeader(content: string): this {
-    const th = new BunnyTableHead().text(content);
+    const th = new BunnyTableHead();
+    th.text(content);
     this.append(th);
     return this;
   }
@@ -27,7 +28,8 @@ export default class BunnyRow extends BunnyElement<HTMLTableRowElement> {
    * @returns La instancia actual para encadenamiento
    */
   addCell(content: string): this {
-    const td = new BunnyTableField().text(content);
+    const td = new BunnyTableField();
+    td.text(content);
     this.append(td);
     return this;
   }

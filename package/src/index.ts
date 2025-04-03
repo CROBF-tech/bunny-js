@@ -1,94 +1,80 @@
-/**
- * Bunny - Una librería minimalista para manipulación del DOM en TypeScript
- */
-
+import { BunnyContainer } from "./BunnyContainer";
 import BunnyElement from "./elements/BunnyElement";
-import BunnyDiv from "./elements/BunnyDiv";
-import BunnyParagraph from "./elements/BunnyParagraph";
-import BunnyInput from "./elements/BunnyInput";
-import BunnyButton from "./elements/BunnyButton";
-import BunnyTable from "./elements/BunnyTable";
-import BunnyRow from "./elements/BunnyRow";
-import BunnyTableHead from "./elements/BunnyTableHead";
-import BunnyTableField from "./elements/BunnyTableField";
 
 /**
- * Objeto global para crear instancias de elementos Bunny
+ * Clase para manejar eventos DOM
  */
-const bunny = {
+class BunnyDom {
   /**
-   * Crea un elemento genérico
-   * @param tagName Nombre de etiqueta HTML
-   * @returns Nueva instancia de BunnyElement
+   * Ejecuta una función cuando el DOM está listo
+   * @param callback Función a ejecutar
    */
-  element<T extends HTMLElement>(tagName: string): BunnyElement<T> {
-    return new BunnyElement<T>(tagName);
-  },
+  ready(callback: () => void): void {
+    if (
+      document.readyState === "complete" ||
+      document.readyState === "interactive"
+    ) {
+      setTimeout(callback, 1);
+    } else {
+      document.addEventListener("DOMContentLoaded", callback);
+    }
+  }
+}
+
+/**
+ * Crea una instancia de BunnyContainer con todos los métodos disponibles
+ * y añade el método ready para eventos del DOM
+ */
+class BunnyRoot extends BunnyContainer {
+  // Instancia de BunnyDom para manejar eventos DOM
+  private domHandler: BunnyDom = new BunnyDom();
 
   /**
-   * Crea un div
-   * @returns Nueva instancia de BunnyDiv
+   * Ejecuta una función cuando el DOM está listo
+   * @param callback Función a ejecutar
    */
-  div(): BunnyDiv {
-    return new BunnyDiv();
-  },
+  ready(callback: () => void): void {
+    this.domHandler.ready(callback);
+  }
 
   /**
-   * Crea un párrafo
-   * @returns Nueva instancia de BunnyParagraph
+   * Selecciona un elemento del DOM y lo convierte en un BunnyContainer
+   * @param selector Selector CSS para encontrar el elemento
+   * @returns Un nuevo BunnyContainer con el elemento encontrado como contexto, o null si no se encuentra
    */
-  p(): BunnyParagraph {
-    return new BunnyParagraph();
-  },
+  select(selector: string): BunnyContainer<HTMLElement> | null {
+    return BunnyContainer.select(selector);
+  }
 
   /**
-   * Crea un input
-   * @param type Tipo de input
-   * @returns Nueva instancia de BunnyInput
+   * Selecciona múltiples elementos del DOM y los convierte en un array de BunnyContainer
+   * @param selector Selector CSS para encontrar los elementos
+   * @returns Un array de BunnyContainer, uno por cada elemento encontrado
    */
-  input(type: string = "text"): BunnyInput {
-    return new BunnyInput(type);
-  },
+  selectAll(selector: string): BunnyContainer<HTMLElement>[] {
+    const elements = document.querySelectorAll(selector);
+    const containers: BunnyContainer<HTMLElement>[] = [];
 
-  /**
-   * Crea un botón
-   * @returns Nueva instancia de BunnyButton
-   */
-  button(): BunnyButton {
-    return new BunnyButton();
-  },
+    elements.forEach((element) => {
+      // Creamos un BunnyElement con la etiqueta correspondiente
+      const bunnyElement = new BunnyElement<HTMLElement>(
+        element.tagName.toLowerCase()
+      );
 
-  /**
-   * Crea una tabla
-   * @returns Nueva instancia de BunnyTable
-   */
-  table(): BunnyTable {
-    return new BunnyTable();
-  },
+      // Reemplazamos su elemento interno con el elemento DOM encontrado
+      Object.defineProperty(bunnyElement, "element", {
+        value: element,
+        writable: false,
+      });
 
-  /**
-   * Crea una fila de tabla
-   * @returns Nueva instancia de BunnyRow
-   */
-  row(): BunnyRow {
-    return new BunnyRow();
-  },
+      containers.push(new BunnyContainer(bunnyElement));
+    });
 
-  /**
-   * Crea una celda de encabezado
-   * @returns Nueva instancia de BunnyTableHead
-   */
-  th(): BunnyTableHead {
-    return new BunnyTableHead();
-  },
+    return containers;
+  }
+}
 
-  /**
-   * Crea una celda de datos
-   * @returns Nueva instancia de BunnyTableField
-   */
-  td(): BunnyTableField {
-    return new BunnyTableField();
-  },
-};
+// Exportamos la instancia principal de BunnyRoot como 'bunny'
+const bunny = new BunnyRoot();
 
 export default bunny;

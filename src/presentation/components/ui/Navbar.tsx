@@ -12,10 +12,10 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-bunny-yellow shadow-sm">
+    <header className="sticky top-0 z-40 w-full bg-bunny-yellow/90 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <span className="text-bunny-black font-bold text-xl">🐰 bunny</span>
+          <span className="text-bunny-black font-bold text-xl">Bunny</span>
         </Link>
 
         {/* Desktop Navigation */}

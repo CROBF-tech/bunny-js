@@ -31,9 +31,9 @@ bunny.fetch("https://api.example.com/data")
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-bunny-yellow py-20 px-4">
+      <section className="bg-bunny-yellow/70 py-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row items-center">
+          <div className="flex flex-col-reverse md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-bunny-black mb-4">
                 Interactúa con el DOM.
@@ -66,11 +66,8 @@ bunny.fetch("https://api.example.com/data")
               </div>
             </div>
             <div className="md:w-1/2">
-              <div className="bg-bunny-black/90 rounded-lg p-1 shadow-lg transform rotate-1 hover:rotate-0 transition-transform max-w-[80vw]">
-                <CodeBlock
-                  code={simpleExample}
-                  title="ejemplo.js"
-                />
+              <div className="transform rotate-0 hover:rotate-2 hover:scale-[1.1] transition-transform max-w-[80vw]">
+              <img src="/logo.png" alt="" className="max-w-[100%] mb-4" />
               </div>
             </div>
           </div>
