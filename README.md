@@ -394,14 +394,14 @@ function crearTabla(datos) {
   // Crear encabezado
   const encabezado = tabla.row();
   Object.keys(datos[0]).forEach((clave) => {
-    encabezado.th(clave);
+    encabezado.addHeader(clave);
   });
 
   // Crear filas de datos
   datos.forEach((fila) => {
     const filaDatos = tabla.row();
     Object.values(fila).forEach((valor) => {
-      filaDatos.td(String(valor));
+      filaDatos.addCell(String(valor));
     });
   });
 
@@ -423,10 +423,11 @@ miTabla.insertIn("#app");
 
 ```javascript
 function crearFormulario(campos, onSubmit) {
+
   const form = bunny
     .element("form")
     .addClass("formulario-dinamico")
-    .when("submit", (target, event) => {
+    .when("submit", (_target, event) => {
       event.preventDefault();
 
       // Recopilar datos
@@ -499,7 +500,7 @@ function crearGaleria(imagenes) {
     });
 
     // Crear elemento imagen
-    const imagen = bunny
+    const imagen = contenedor
       .element("img")
       .attr({
         src: img.url,
@@ -528,9 +529,6 @@ function crearGaleria(imagenes) {
         textAlign: "center",
       });
     }
-
-    // Añadir imagen al contenedor
-    contenedor.getContext().append(imagen);
   });
 
   return galeria;
