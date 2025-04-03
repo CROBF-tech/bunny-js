@@ -1,7 +1,8 @@
 {
     "name": "@crobf/bunny-js",
     "description": "Una librería minimalista para manipular el DOM",
-    "version": "0.1.2",
+    "homepage": "https://bunny-js.crobf.tech",
+    "version": "0.3.0",
     "author": {
         "name": "CROBF",
         "email": "crobf.arg@gmail.com",
@@ -9,7 +10,8 @@
     },
     "main": "dist/bunny.es.js",
     "type": "module",
-    "module": "dist/bunny.es.js",
+    "module": "dist/bunny.umd.js",
+    "types": "dist/index.d.ts",
     "private": false,
     "repository": {
         "type": "git",
