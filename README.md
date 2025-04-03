@@ -20,13 +20,13 @@ En el desarrollo web moderno, muchas veces nos encontramos en situaciones donde 
 ### Mediante npm
 
 ```bash
-npm install bunnyjs
+npm i @crobf/bunny-js
 ```
 
 ### Mediante unpkg
 
 ```html
-<script src="https://unpkg.com/bunnyjs/dist/bunny.min.js"></script>
+<script src="https://unpkg.com/@crobf/bunny-js@latest/dist/bunny.umd.js"></script>
 ```
 
 ## Uso Básico
@@ -37,7 +37,7 @@ BunnyJS se centra en la creación y manipulación de elementos del DOM a través
 
 ```javascript
 // Importar BunnyJS
-import bunny from "bunnyjs";
+import bunny from "@crobf/bunny-js";
 
 // Crear un div con texto
 const miDiv = bunny.div().text("Hola Mundo");
@@ -73,16 +73,16 @@ formulario.title("Formulario de Contacto", 2);
 // Añadir campos
 const campoNombre = formulario
   .div()
-  .addClass("campo")
-  .p("Nombre:")
-  .input("text")
+  .addClass("campo");
+campoNombre.p("Nombre:");
+campoNombre.input("text")
   .attr({ placeholder: "Escribe tu nombre" });
 
 const campoEmail = formulario
   .div()
-  .addClass("campo")
-  .p("Email:")
-  .input("email")
+  .addClass("campo");
+campoEmail.p("Email:");
+campoEmail.input("email")
   .attr({ placeholder: "Escribe tu email" });
 
 // Añadir botón
