@@ -587,21 +587,7 @@ Para listas muy grandes, es recomendable utilizar fragmentos de documento (`Docu
 
 - Mantén el código simple y minimalista
 - Asegúrate de incluir tipos para TypeScript
-- Añade tests para nuevas funcionalidades
 - Documenta los cambios en el código
-
-## Licencia
-
-BunnyJS está licenciado bajo la licencia MIT.
-
-```
-MIT License
-
-Copyright (c) 2023 BunnyJS
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software...
-```
 
 ---
 
