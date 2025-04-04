@@ -2,7 +2,7 @@
     "name": "@crobf/bunny-js",
     "description": "Una librería minimalista para manipular el DOM",
     "homepage": "https://bunny-js.crobf.tech",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "author": {
         "name": "CROBF",
         "email": "crobf.arg@gmail.com",
