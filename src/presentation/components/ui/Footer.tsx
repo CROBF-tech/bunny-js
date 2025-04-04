@@ -29,37 +29,12 @@ export const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://github.com/CROBF-ARG/bunny-js"
+                  href="https://github.com/CROBF-tech/bunny-js"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm hover:text-bunny-yellow transition-colors"
                 >
                   GitHub
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-bunny-yellow font-bold text-lg mb-4">Comunidad</h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="https://twitter.com/bunny_js"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm hover:text-bunny-yellow transition-colors"
-                >
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://discord.gg/bunny-js"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm hover:text-bunny-yellow transition-colors"
-                >
-                  Discord
                 </a>
               </li>
             </ul>

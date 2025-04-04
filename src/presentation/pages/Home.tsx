@@ -44,7 +44,7 @@ button.insertIn(document.body);`;
                   asChild
                 >
                   <a 
-                    href="https://github.com/CROBF-ARG/bunny-js" 
+                    href="https://github.com/CROBF-tech/bunny-js" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
