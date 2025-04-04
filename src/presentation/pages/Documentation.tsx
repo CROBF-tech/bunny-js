@@ -11,7 +11,7 @@ const Documentation = () => {
     { id: "elementos", title: "Creación de elementos" },
     { id: "manipulacion", title: "Manipulación DOM" },
     { id: "eventos", title: "Eventos" },
-    { id: "http", title: "HTTP" },
+    { id: "estados", title: "Estados" },
     { id: "utilidades", title: "Utilidades" },
   ];
 

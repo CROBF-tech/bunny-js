@@ -3,7 +3,8 @@ import { InstallationSection } from "./InstallationSection";
 import { ElementsSection } from "./ElementsSection";
 import { ManipulationSection } from "./ManipulationSection";
 import { EventsSection } from "./EventsSection";
-import { HttpSection } from "./HttpSection";
+//import { HttpSection } from "./HttpSection";
+import { StateSection } from "./StateSection";
 import { UtilitiesSection } from "./UtilitiesSection";
 
 export const DocumentationContent = () => {
@@ -20,7 +21,8 @@ export const DocumentationContent = () => {
       <ElementsSection />
       <ManipulationSection />
       <EventsSection />
-      <HttpSection />
+      {/*<HttpSection />*/}
+      <StateSection/>
       <UtilitiesSection />
     </div>
   );
