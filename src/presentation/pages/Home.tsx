@@ -9,24 +9,12 @@ const Home = () => {
   const simpleExample = `// Crear y manipular elementos
 const button = bunny.button("Click me");
 button.when("click", (target) => {
-  target.textContent = "¡Gracias por usar bunny!";
+  target.text("¡Gracias por usar bunny!");
 });
 
 // Aplicar estilos
-button.style("backgroundColor", "#FFC700");
+button.style({ backgroundColor: "#FFC700"});
 button.insertIn(document.body);`;
-
-  const ajaxExample = `// Realizar peticiones AJAX
-bunny.fetch("https://api.example.com/data")
-  .then(data => {
-    const list = bunny.ul();
-    
-    data.items.forEach(item => {
-      list.li(item.name);
-    });
-    
-    list.insertIn(document.querySelector(".result"));
-  });`;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -56,7 +44,7 @@ bunny.fetch("https://api.example.com/data")
                   asChild
                 >
                   <a 
-                    href="https://github.com/bunny/bunny-js" 
+                    href="https://github.com/CROBF-ARG/bunny-js" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
@@ -145,7 +133,7 @@ bunny.fetch("https://api.example.com/data")
             <div className="md:w-1/2">
               <div className="bg-bunny-black/90 rounded-lg p-1 shadow-lg transform -rotate-1 hover:rotate-0 transition-transform max-w-[80vw]">
                 <CodeBlock
-                  code={ajaxExample}
+                  code={simpleExample}
                   title="ajax-ejemplo.js"
                 />
               </div>

@@ -33,7 +33,7 @@ export const Navbar = () => {
             Documentación
           </Link>
           <a
-            href="https://github.com/bunny/bunny-js"
+            href="https://github.com/CROBF-ARG/bunny-js"
             target="_blank"
             rel="noopener noreferrer"
             className="text-bunny-black font-medium hover:text-bunny-black/80 transition-colors"
