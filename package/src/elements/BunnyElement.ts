@@ -54,12 +54,12 @@ export default class BunnyElement<T extends HTMLElement> {
   /**
    * Establece el HTML interno del elemento o retorna el actual
    * @param html Contenido HTML a establecer
-   * @returns La instancia actual para encadenamiento o el contenido HTML actual
+   * @returns El contenido HTML actual
    */
-  html(html?: string): this | string {
+  html(html?: string): string {
     if (!html) return this.element.innerHTML;
     this.element.innerHTML = html;
-    return this;
+    return this.element.innerHTML;
   }
 
   /**
