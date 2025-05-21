@@ -1,4 +1,4 @@
-import BunnyElement from "./BunnyElement";
+import BunnyElement from "@/core/BunnyContainer";
 /**
  * Clase especializada para divs
  */

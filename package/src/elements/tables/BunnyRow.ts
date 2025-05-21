@@ -1,4 +1,4 @@
-import BunnyElement from "./BunnyElement";
+import BunnyElement from "@/core/BunnyContainer";
 import BunnyTableHead from "./BunnyTableHead";
 import BunnyTableField from "./BunnyTableField";
 
@@ -18,7 +18,7 @@ export default class BunnyRow extends BunnyElement<HTMLTableRowElement> {
   addHeader(content: string): this {
     const th = new BunnyTableHead();
     th.text(content);
-    this.append(th);
+    this.element.append(th.getElement());
     return this;
   }
 
@@ -30,7 +30,7 @@ export default class BunnyRow extends BunnyElement<HTMLTableRowElement> {
   addCell(content: string): this {
     const td = new BunnyTableField();
     td.text(content);
-    this.append(td);
+    this.element.append(td.getElement());
     return this;
   }
 }

@@ -1,4 +1,4 @@
-import BunnyElement from "./BunnyElement";
+import BunnyElement from "@/core/BunnyContainer";
 import BunnyRow from "./BunnyRow";
 
 /**
@@ -15,7 +15,7 @@ export default class BunnyTable extends BunnyElement<HTMLTableElement> {
    * @returns La instancia actual para encadenamiento
    */
   addRow(row: BunnyRow): this {
-    this.append(row);
+    this.element.append(row.getElement());
     return this;
   }
 }

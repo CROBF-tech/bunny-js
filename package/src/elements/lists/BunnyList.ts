@@ -1,5 +1,6 @@
-import BunnyElement from "./BunnyElement";
+import BunnyElement from "@/core/BunnyContainer";
 import BunnyItemList from "./BunnyItemList";
+
 /**
  * Clase base para listas (ul/ol)
  */
@@ -11,24 +12,13 @@ export default class BunnyList extends BunnyElement<
   }
 
   /**
-   * Añade un elemento de lista con el texto especificado
-   * @param text Texto del elemento de lista
-   * @returns La instancia actual para encadenamiento
-   */
-  li(text: string): this {
-    const listItem = new BunnyItemList();
-    listItem.text(text);
-    this.append(listItem);
-    return this;
-  }
-
-  /**
    * Añade un elemento de lista vacío y lo devuelve
    * @returns El elemento de lista creado
    */
-  addItem(): BunnyItemList {
+  addItem(content: string): BunnyItemList {
     const listItem = new BunnyItemList();
-    this.append(listItem);
+    listItem.html(content);
+    this.element.append(listItem.getElement());
     return listItem;
   }
 }

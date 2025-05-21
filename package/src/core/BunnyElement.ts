@@ -110,7 +110,7 @@ export default class BunnyElement<T extends HTMLElement> extends BunnyRoot<T> {
      * @param child Elemento a añadir como hijo
      * @returns La instancia actual para encadenamiento
      */
-    append(child: BunnyElement<HTMLElement> | HTMLElement): this {
+    append<Container extends BunnyElement<HTMLElement>>(child: Container | HTMLElement): this {
         const childElement =
             child instanceof BunnyElement ? child.getElement() : child;
         this.element.appendChild(childElement);
@@ -122,7 +122,7 @@ export default class BunnyElement<T extends HTMLElement> extends BunnyRoot<T> {
      * @param container Elemento contenedor o selector CSS
      * @returns La instancia actual para encadenamiento
      */
-    insertIn(container: BunnyElement<HTMLElement> | HTMLElement | string): this {
+    insertIn<Container extends BunnyElement<HTMLElement>>(container: Container | HTMLElement | string): this {
 
         const parent = container instanceof BunnyElement ? container.getElement() :
             (typeof container === "string"

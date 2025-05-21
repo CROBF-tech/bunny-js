@@ -1,4 +1,4 @@
-import BunnyElement from "./BunnyElement";
+import BunnyElement from "@/core/BunnyContainer";
 /**
  * Clase para representar elementos de lista (li)
  */
